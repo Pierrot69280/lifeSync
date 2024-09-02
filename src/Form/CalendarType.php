@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Calendar;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ColorType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,17 +15,17 @@ class CalendarType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('start', null, [
-                'widget' => 'single_text',
+            ->add('start', DateTimeType::class, [
+                'date_widget' => 'single_text'
             ])
-            ->add('end', null, [
-                'widget' => 'single_text',
+            ->add('endd', DateTimeType::class, [
+                'date_widget' => 'single_text'
             ])
             ->add('description')
             ->add('all_day')
-            ->add('background_color')
-            ->add('border_color')
-            ->add('text_color')
+            ->add('background_color', ColorType::class)
+            ->add('border_color', ColorType::class)
+            ->add('text_color', ColorType::class)
         ;
     }
 

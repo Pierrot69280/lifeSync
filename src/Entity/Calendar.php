@@ -21,7 +21,7 @@ class Calendar
     private ?\DateTimeInterface $start = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $end = null; // Correction ici
+    private ?\DateTimeInterface $endd= null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
@@ -67,14 +67,14 @@ class Calendar
         return $this;
     }
 
-    public function getEnd(): ?\DateTimeInterface // Correction ici
+    public function getEndd(): ?\DateTimeInterface
     {
-        return $this->end; // Correction ici
+        return $this->endd;
     }
 
-    public function setEnd(\DateTimeInterface $end): static // Correction ici
+    public function setEndd(\DateTimeInterface $endd): static
     {
-        $this->end = $end; // Correction ici
+        $this->endd = $endd;
 
         return $this;
     }
