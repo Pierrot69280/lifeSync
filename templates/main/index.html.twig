@@ -3,8 +3,9 @@
 {% block title %}Calendrier{% endblock %}
 
 {% block body %}
-    <div id="calendrier">
-    </div>
+    <div id="calendrier"></div>
+
+    <a href="{{ path('app_calendar_new') }}" class="btn btn-primary mt-3">Ajouter un évent</a>
 {% endblock %}
 
 {% block javascripts %}
@@ -20,8 +21,10 @@
                     start: 'prev,next today',
                     center: 'title',
                     end: 'dayGridMonth,timeGridWeek'
-                }
-            });
+                },
+                events: {{ data|raw }},
+                eventResizableFromStart: true
+            })
 
             calendar.render();
         }
