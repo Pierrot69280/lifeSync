@@ -1,49 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Calendar index{% endblock %}
+{% block title %}Calendar Index{% endblock %}
 
 {% block body %}
-    <h1>Calendar index</h1>
+    <div class="container my-5">
+        <h1 class="mb-4">Calendar Index</h1>
 
-    <table class="table">
-        <thead>
+        <table class="table table-striped table-hover">
+            <thead class="thead-dark">
             <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Start</th>
-                <th>End</th>
-                <th>Description</th>
-                <th>All_day</th>
-                <th>Background_color</th>
-                <th>Border_color</th>
-                <th>Text_color</th>
-                <th>actions</th>
+                <th scope="col">Id</th>
+                <th scope="col">Title</th>
+                <th scope="col">Start</th>
+                <th scope="col">End</th>
+                <th scope="col">Description</th>
+                <th scope="col">All Day</th>
+                <th scope="col">Background Color</th>
+                <th scope="col">Border Color</th>
+                <th scope="col">Text Color</th>
+                <th scope="col">Actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for calendar in calendars %}
-            <tr>
-                <td>{{ calendar.id }}</td>
-                <td>{{ calendar.title }}</td>
-                <td>{{ calendar.start ? calendar.start|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ calendar.endd ? calendar.endd|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ calendar.description }}</td>
-                <td>{{ calendar.allDay ? 'Yes' : 'No' }}</td>
-                <td>{{ calendar.backgroundColor }}</td>
-                <td>{{ calendar.borderColor }}</td>
-                <td>{{ calendar.textColor }}</td>
-                <td>
-                    <a href="{{ path('app_calendar_show', {'id': calendar.id}) }}">show</a>
-                    <a href="{{ path('app_calendar_edit', {'id': calendar.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="10">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for calendar in calendars %}
+                <tr>
+                    <td>{{ calendar.id }}</td>
+                    <td>{{ calendar.title }}</td>
+                    <td>{{ calendar.start ? calendar.start|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ calendar.endd ? calendar.endd|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ calendar.description }}</td>
+                    <td>{{ calendar.allDay ? 'Yes' : 'No' }}</td>
+                    <td><span class="badge" style="background-color: {{ calendar.backgroundColor }}">{{ calendar.backgroundColor }}</span></td>
+                    <td><span class="badge" style="background-color: {{ calendar.borderColor }}">{{ calendar.borderColor }}</span></td>
+                    <td><span class="badge" style="background-color: {{ calendar.textColor }}">{{ calendar.textColor }}</span></td>
+                    <td>
+                        <a href="{{ path('app_calendar_show', {'id': calendar.id}) }}" class="btn btn-info btn-sm">Show</a>
+                        <a href="{{ path('app_calendar_edit', {'id': calendar.id}) }}" class="btn btn-warning btn-sm">Edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="10" class="text-center">No records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <a href="{{ path('app_calendar_new') }}">Create new</a>
+        <a href="{{ path('app_calendar_new') }}" class="btn btn-primary mt-4">Create New</a>
+    </div>
 {% endblock %}

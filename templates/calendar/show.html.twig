@@ -3,52 +3,54 @@
 {% block title %}Calendar{% endblock %}
 
 {% block body %}
-    <h1>Calendar</h1>
+    <div class="container my-5">
+        <h1 class="mb-4">Calendar Details</h1>
 
-    <table class="table">
-        <tbody>
+        <table class="table table-bordered">
+            <tbody>
             <tr>
-                <th>Id</th>
+                <th scope="row">Id</th>
                 <td>{{ calendar.id }}</td>
             </tr>
             <tr>
-                <th>Title</th>
+                <th scope="row">Title</th>
                 <td>{{ calendar.title }}</td>
             </tr>
             <tr>
-                <th>Start</th>
+                <th scope="row">Start</th>
                 <td>{{ calendar.start ? calendar.start|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>End</th>
+                <th scope="row">End</th>
                 <td>{{ calendar.endd ? calendar.endd|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>Description</th>
+                <th scope="row">Description</th>
                 <td>{{ calendar.description }}</td>
             </tr>
             <tr>
-                <th>All_day</th>
+                <th scope="row">All Day</th>
                 <td>{{ calendar.allDay ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
-                <th>Background_color</th>
-                <td>{{ calendar.backgroundColor }}</td>
+                <th scope="row">Background Color</th>
+                <td><span class="badge" style="background-color: {{ calendar.backgroundColor }}">{{ calendar.backgroundColor }}</span></td>
             </tr>
             <tr>
-                <th>Border_color</th>
-                <td>{{ calendar.borderColor }}</td>
+                <th scope="row">Border Color</th>
+                <td><span class="badge" style="background-color: {{ calendar.borderColor }}">{{ calendar.borderColor }}</span></td>
             </tr>
             <tr>
-                <th>Text_color</th>
-                <td>{{ calendar.textColor }}</td>
+                <th scope="row">Text Color</th>
+                <td><span class="badge" style="background-color: {{ calendar.textColor }}">{{ calendar.textColor }}</span></td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <a href="{{ path('app_calendar_index') }}">back to list</a>
-
-    <a href="{{ path('app_calendar_edit', {'id': calendar.id}) }}">edit</a>
-
-    {{ include('calendar/_delete_form.html.twig') }}
+        <div class="mt-4">
+            <a href="{{ path('app_calendar_index') }}" class="btn btn-secondary">Back to List</a>
+            <a href="{{ path('app_calendar_edit', {'id': calendar.id}) }}" class="btn btn-warning">Edit</a>
+            {{ include('calendar/_delete_form.html.twig', { 'class': 'd-inline' }) }}
+        </div>
+    </div>
 {% endblock %}

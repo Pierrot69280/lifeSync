@@ -3,9 +3,13 @@
 {% block title %}New Calendar{% endblock %}
 
 {% block body %}
-    <h1>Create new Calendar</h1>
+    <div class="container my-5">
+        <h1 class="mb-4">Create New Calendar</h1>
 
-    {{ include('calendar/_form.html.twig') }}
+        <div class="card p-4 mb-4">
+            {{ include('calendar/_form.html.twig') }}
+        </div>
 
-    <a href="{{ path('app_calendar_index') }}">back to list</a>
+        <a href="{{ path('app_calendar_index') }}" class="btn btn-secondary">Back to List</a>
+    </div>
 {% endblock %}

@@ -3,11 +3,17 @@
 {% block title %}Edit Calendar{% endblock %}
 
 {% block body %}
-    <h1>Edit Calendar</h1>
+    <div class="container my-5">
+        <h1 class="mb-4">Edit Calendar</h1>
 
-    {{ include('calendar/_form.html.twig', {'button_label': 'Update'}) }}
+        <div class="card p-4 mb-4">
+            {{ include('calendar/_form.html.twig', {'button_label': 'Update'}) }}
+        </div>
 
-    <a href="{{ path('app_calendar_index') }}">back to list</a>
+        <div class="mt-4">
+            <a href="{{ path('app_calendar_index') }}" class="btn btn-secondary">Back to List</a>
 
-    {{ include('calendar/_delete_form.html.twig') }}
+            {{ include('calendar/_delete_form.html.twig') }}
+        </div>
+    </div>
 {% endblock %}

@@ -3,28 +3,35 @@
 {% block title %}Calendrier{% endblock %}
 
 {% block body %}
-    <div id="calendrier"></div>
+    <div class="container my-5">
+        <div class="text-center mb-4">
+            <a href="{{ path('app_calendar_new') }}" class="btn btn-primary">Ajouter un évènement</a>
+        </div>
 
-    <a href="{{ path('app_calendar_new') }}" class="btn btn-primary mt-3">Ajouter un évent</a>
+        <div id="calendrier" class="mb-4"></div>
+
+    </div>
 {% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
+
     <script>
         window.onload = () => {
             let calendarElt = document.querySelector("#calendrier");
 
             let calendar = new FullCalendar.Calendar(calendarElt, {
                 initialView: 'dayGridWeek',
-                locale : 'fr',
-                timeZone : 'Europe/Paris',
-                headerToolbar:{
+                locale: 'fr',
+                timeZone: 'Europe/Paris',
+                headerToolbar: {
                     start: 'prev,next today',
                     center: 'title',
                     end: 'dayGridMonth,timeGridWeek'
                 },
                 events: {{ data|raw }},
                 eventResizableFromStart: true
-            })
+            });
 
             calendar.render();
         }
