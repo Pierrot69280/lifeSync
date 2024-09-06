@@ -1,4 +1,12 @@
+body {
+    background-color: rgba(102, 141, 213, 0.42);
+}
+
 #calendrier {
     width: 80%;
     margin: auto;
+}
+
+.fc-event {
+    cursor: pointer;
 }

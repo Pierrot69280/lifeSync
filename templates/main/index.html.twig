@@ -6,10 +6,10 @@
     <div class="container my-5">
         <div class="text-center mb-4">
             <a href="{{ path('app_calendar_new') }}" class="btn btn-primary">Ajouter un évènement</a>
+            <a href="{{ path('app_calendar_index') }}" class="btn btn-secondary">Voir la liste</a>
         </div>
 
-        <div id="calendrier" class="mb-4"></div>
-
+        <div id="calendrier" class="bg-light p-4 rounded mb-4"></div>
     </div>
 {% endblock %}
 
@@ -30,7 +30,12 @@
                     end: 'dayGridMonth,timeGridWeek'
                 },
                 events: {{ data|raw }},
-                eventResizableFromStart: true
+                eventResizableFromStart: true,
+                eventClick: function(info) {
+                    let eventId = info.event.id;
+                    let url = "{{ path('app_calendar_show', {'id': 'eventId'}) }}".replace('eventId', eventId);
+                    window.location.href = url;
+                }
             });
 
             calendar.render();
